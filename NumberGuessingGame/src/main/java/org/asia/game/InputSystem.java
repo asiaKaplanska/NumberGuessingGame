@@ -23,5 +23,10 @@ public final class InputSystem {
         return Integer.parseInt(s.nextLine());
     }
 
-    // ToDo: walidacja inputu, (w przyszłości rezszerzenie metody o podanie np imienia >>>> metoda generyczna???
+    public String getUserName() {
+
+        return s.nextLine();
+    }
+
+    // ToDo: walidacja inputu
 }
