@@ -5,9 +5,9 @@ public class GameLoop {
     private GameState gameState;
 
     private GameUI gameUI = new GameUI();
-    private InputSystem inputSystem;
-    private NumberGenerator numberGenerator;
-    private ScoreSystem scoreSystem;
+    private InputSystem inputSystem = InputSystem.getInstance();
+    private NumberGenerator numberGenerator = new NumberGenerator();
+    private ScoreSystem scoreSystem = new ScoreSystem();
 
 
 
@@ -25,11 +25,16 @@ public class GameLoop {
 
             gameUI.printInsertInputMessage();
             var userInput = inputSystem.getUserInput();
-            gameUI.printDrawnNumber();
             var generatedNumber = numberGenerator.drawRandomNumber();
+            gameUI.printDrawnNumber(generatedNumber);
 
             scoreSystem.addBasicScore(userInput, generatedNumber, gameState);
             scoreSystem.addBonusScore(gameState);
         }
+    }
+
+    public void playSummary() {
+
+        gameUI.printCollectedPointsMessage(gameState.getUserScore());
     }
 }
