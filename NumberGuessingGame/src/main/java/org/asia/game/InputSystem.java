@@ -52,13 +52,11 @@ public final class InputSystem {
 
         do {
             userInputDecision = scanner.next();
-            try {
             if ((Objects.equals(userInputDecision, Config.YES_RESPONSE.toLowerCase())) ||
                     (Objects.equals(userInputDecision, Config.NO_RESPONSE.toLowerCase()))) {
                 success = true;
-            } } catch (Exception e) {
-                gameUI.printResponseWarningExceptionMessage();
             }
+               gameUI.printResponseWarningExceptionMessage();
         } while (!success);
 
         return userInputDecision;
