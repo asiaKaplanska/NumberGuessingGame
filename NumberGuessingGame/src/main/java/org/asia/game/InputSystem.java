@@ -1,5 +1,6 @@
 package org.asia.game;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public final class InputSystem {
@@ -19,9 +20,9 @@ public final class InputSystem {
         return instance;
     }
 
-    public int getUserInput() {
+    public int getUserIntegerInput() {
 
-        boolean flag;
+        boolean success = false;
         String userInputAsString;
         var userInputAsInteger = 0;
 
@@ -29,12 +30,11 @@ public final class InputSystem {
             userInputAsString = scanner.next();
             try {
                 userInputAsInteger = Integer.parseInt(userInputAsString);
-                flag = false;
+                success = true;
             } catch (NumberFormatException nfe) {
                 gameUI.printOnlyNumbersMessage();
-                flag = true;
             }
-        } while (flag);
+        } while (!success);
 
        return userInputAsInteger;
     }
@@ -44,5 +44,25 @@ public final class InputSystem {
 
         return scanner.nextLine();
     }
+
+    public String getUserPlayingDecision() {
+
+        boolean success = false;
+        String userInputDecision;
+
+        do {
+            userInputDecision = scanner.next();
+            try {
+            if ((Objects.equals(userInputDecision, Config.YES_RESPONSE.toLowerCase())) ||
+                    (Objects.equals(userInputDecision, Config.NO_RESPONSE.toLowerCase()))) {
+                success = true;
+            } } catch (Exception e) {
+                gameUI.printResponseWarningExceptionMessage();
+            }
+        } while (!success);
+
+        return userInputDecision;
+    }
+
 
 }

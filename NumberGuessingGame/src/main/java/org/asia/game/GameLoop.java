@@ -1,5 +1,7 @@
 package org.asia.game;
 
+import java.util.Objects;
+
 public class GameLoop {
 
     private GameState gameState;
@@ -22,13 +24,13 @@ public class GameLoop {
         gameUI.printGreetingUserMessage(gameState);
     }
 
-    public void playGame() {
+    private void playGameRound() {
 
         for (int i = 0; i < Config.GAMES_ITERATION; i++) {
 
             gameUI.printRoundMessage(i + 1);
             gameUI.printInsertInputMessage();
-            var userInput = inputSystem.getUserInput();
+            var userInput = inputSystem.getUserIntegerInput();
             var generatedNumber = numberGenerator.drawRandomNumber();
             gameUI.printDrawnNumber(generatedNumber);
             gameUI.printEmptyRow();
@@ -36,13 +38,29 @@ public class GameLoop {
             scoreSystem.addBasicScore(userInput, generatedNumber, gameState);
             scoreSystem.addBonusScore(gameState);
         }
+    }
+
+    public boolean playGame() {
+
+        playGameRound();
+        playSummary();
+        return shouldPlayAgain();
+    }
+
+    private void playSummary() {
 
         gameUI.printDottedLine();
-    }
-
-    public void playSummary() {
-
         gameUI.printEmptyRow();
         gameUI.printCollectedPointsMessage(gameState.getUserName(), gameState.getUserScore());
+        gameUI.printEmptyRow();
     }
+
+    private boolean shouldPlayAgain() {
+
+        gameUI.printPlayAgainMessage();
+        var userInput = inputSystem.getUserPlayingDecision();
+        return Objects.equals(userInput, Config.YES_RESPONSE);
+    }
+
+
 }

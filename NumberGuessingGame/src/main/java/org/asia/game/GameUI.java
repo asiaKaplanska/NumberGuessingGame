@@ -22,6 +22,8 @@ public class GameUI {
             "Hello %s! Guess how many eggs the hen has laid?";
     private static final String ROUND = "Round ";
     private static final String INPUT_NUMBERS = "You can only enter numbers!";
+    private static final String PLAY_AGAIN = "Want to play again? If YES choose 'y' or 'n' if NO";
+    private static final String INPUT_PLAY_GAME_RESPONSE = "You can only enter 'y' or 'n'!";
 
 
     public void printInsertInputMessage() {
@@ -72,6 +74,16 @@ public class GameUI {
     public void printOnlyNumbersMessage() {
 
         System.out.println(INPUT_NUMBERS);
+    }
+
+    public void printPlayAgainMessage() {
+
+        System.out.println(PLAY_AGAIN);
+    }
+
+    public void printResponseWarningExceptionMessage() {
+
+        System.out.println(INPUT_PLAY_GAME_RESPONSE);
     }
 
 }

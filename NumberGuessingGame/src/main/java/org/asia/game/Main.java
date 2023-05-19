@@ -5,8 +5,13 @@ public class Main {
     public static void main(String[] args) {
 
         GameLoop gameLoop = new GameLoop();
+        boolean playingGame = true;
+
         gameLoop.playIntro();
-        gameLoop.playGame();
-        gameLoop.playSummary();
+
+        while (playingGame) {
+            playingGame = gameLoop.playGame();
+        }
+
     }
 }
