@@ -5,7 +5,8 @@ import java.util.Scanner;
 public final class InputSystem {
 
     private static InputSystem instance;
-    private Scanner s = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+    private GameUI gameUI = new GameUI();
 
     private InputSystem() {
     }
@@ -20,14 +21,28 @@ public final class InputSystem {
 
     public int getUserInput() {
 
-        return Integer.parseInt(s.nextLine());
+        boolean flag;
+        String userInputAsString;
+        var userInputAsInteger = 0;
 
+        do {
+            userInputAsString = scanner.next();
+            try {
+                userInputAsInteger = Integer.parseInt(userInputAsString);
+                flag = false;
+            } catch (NumberFormatException nfe) {
+                gameUI.printOnlyNumbersMessage();
+                flag = true;
+            }
+        } while (flag);
+
+       return userInputAsInteger;
     }
+
 
     public String getUserName() {
 
-        return s.nextLine();
+        return scanner.nextLine();
     }
 
-    // ToDo: walidacja inputu
 }

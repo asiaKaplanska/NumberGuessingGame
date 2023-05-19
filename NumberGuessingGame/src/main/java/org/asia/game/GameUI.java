@@ -21,6 +21,7 @@ public class GameUI {
     private static final String GREETING_USER =
             "Hello %s! Guess how many eggs the hen has laid?";
     private static final String ROUND = "Round ";
+    private static final String INPUT_NUMBERS = "You can only enter numbers!";
 
 
     public void printInsertInputMessage() {
@@ -66,6 +67,11 @@ public class GameUI {
     public void printRoundMessage(int round) {
 
         System.out.print(ROUND + round);
+    }
+
+    public void printOnlyNumbersMessage() {
+
+        System.out.println(INPUT_NUMBERS);
     }
 
 }
