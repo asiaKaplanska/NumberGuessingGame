@@ -21,6 +21,7 @@ public final class InputSystem {
     public int getUserInput() {
 
         return Integer.parseInt(s.nextLine());
+
     }
 
     public String getUserName() {

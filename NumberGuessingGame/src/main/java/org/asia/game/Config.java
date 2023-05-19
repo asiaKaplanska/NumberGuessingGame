@@ -3,7 +3,7 @@ package org.asia.game;
 public class Config {
 
     public static final int MIN_VALUE_DRAWING = 1;
-    public static final int MAX_VALUE_DRAWING = 5;
+    public static final int MAX_VALUE_DRAWING = 10;
 
     public static final int BASIC_WIN_POINTS = 5;
     public static final int TWO_WINS_BONUS = 10;
