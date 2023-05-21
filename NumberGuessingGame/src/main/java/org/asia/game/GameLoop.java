@@ -1,5 +1,6 @@
 package org.asia.game;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class GameLoop {
@@ -10,6 +11,7 @@ public class GameLoop {
     private InputSystem inputSystem = InputSystem.getInstance();
     private NumberGenerator numberGenerator = new NumberGenerator();
     private ScoreSystem scoreSystem = new ScoreSystem();
+
 
 
 
@@ -53,6 +55,10 @@ public class GameLoop {
         gameUI.printEmptyRow();
         gameUI.printCollectedPointsMessage(gameState.getUserName(), gameState.getUserScore());
         gameUI.printEmptyRow();
+        GameResult gameResult = new GameResult(gameState.getUserName(), gameState.getUserScore(), LocalDateTime.now());
+        JSONFile jsonFile = new JSONFile();
+        jsonFile.serialise(gameResult);
+
     }
 
     private boolean shouldPlayAgain() {

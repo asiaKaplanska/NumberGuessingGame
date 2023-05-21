@@ -86,4 +86,9 @@ public class GameUI {
         System.out.println(INPUT_PLAY_GAME_RESPONSE);
     }
 
+    public void printSerialisedJson(String string) {
+
+        System.out.println(string);
+    }
+
 }
