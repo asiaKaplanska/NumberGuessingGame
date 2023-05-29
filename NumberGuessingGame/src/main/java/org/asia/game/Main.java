@@ -6,12 +6,10 @@ public class Main {
 
         GameLoop gameLoop = new GameLoop();
         boolean playingGame = true;
-
         gameLoop.playIntro();
 
         while (playingGame) {
             playingGame = gameLoop.playGame();
         }
-
     }
 }

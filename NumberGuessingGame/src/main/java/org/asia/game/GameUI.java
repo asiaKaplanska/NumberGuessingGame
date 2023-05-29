@@ -24,6 +24,8 @@ public class GameUI {
     private static final String INPUT_NUMBERS = "You can only enter numbers!";
     private static final String PLAY_AGAIN = "Want to play again? If YES choose 'y' or 'n' if NO";
     private static final String INPUT_PLAY_GAME_RESPONSE = "You can only enter 'y' or 'n'!";
+    private static final String PREVIOUS_RESULTS = "Here are all the results of previous games: ";
+    private static final String START_GAME = "Let's start!";
 
 
     public void printInsertInputMessage() {
@@ -89,6 +91,21 @@ public class GameUI {
     public void printSerialisedJson(String string) {
 
         System.out.println(string);
+    }
+
+    public void printDeserializedFile(String string) {
+
+        System.out.println(string);
+    }
+
+    public void printPreviousGameResults() {
+
+        System.out.print(PREVIOUS_RESULTS);
+    }
+
+    public void printLetsStart() {
+
+        System.out.println(START_GAME);
     }
 
 }
