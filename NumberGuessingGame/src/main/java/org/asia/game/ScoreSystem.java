@@ -16,8 +16,8 @@ public class ScoreSystem {
 
         switch (gameState.getWinnings()) {
             case Config.DOUBLE_WINS -> gameState.addToUserScore(Config.TWO_WINS_BONUS);
-            case Config.TRIPPLE_WINS -> gameState.addToUserScore(Config.THREE_WINS_BONUS);
-            case Config.QUATRO_WINS -> gameState.addToUserScore(Config.FOUR_WINS_BONUS);
+            case Config.TRIPLE_WINS -> gameState.addToUserScore(Config.THREE_WINS_BONUS);
+            case Config.QUADRUPLE_WINS -> gameState.addToUserScore(Config.FOUR_WINS_BONUS);
             default -> {}
         }
 

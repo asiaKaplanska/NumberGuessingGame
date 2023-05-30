@@ -13,8 +13,8 @@ public class Config {
     public static final int GAMES_ITERATION = 4;
 
     public static final int DOUBLE_WINS = 2;
-    public static final int TRIPPLE_WINS = 3;
-    public static final int QUATRO_WINS = 4;
+    public static final int TRIPLE_WINS = 3;
+    public static final int QUADRUPLE_WINS = 4;
 
     public static final String YES_RESPONSE = "y";
     public static final String NO_RESPONSE = "n";
