@@ -4,9 +4,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.stream.Stream;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -37,17 +42,41 @@ class ScoreSystemTest {
         verify(gameState, never()).addToUserScore(Config.BASIC_WIN_POINTS);
     }
 
-    @Test
+//    @Test
+//    @DisplayName("Should correctly add basic points to user score after drawing correct number [positive]")
+//    void addBasicScore_positive() {
+//
+//        //when
+//        scoreSystem.addBasicScore(1, 1, gameState);
+//
+//        //then
+//        //score system should add to score basic win points and increase winnings
+//        verify(gameState).addToUserScore(Config.BASIC_WIN_POINTS);
+//        verify(gameState).increaseWinnings();
+//    }
+
+    @ParameterizedTest
     @DisplayName("Should correctly add basic points to user score after drawing correct number [positive]")
-    void addBasicScore_positive() {
+    @MethodSource("getDrawingParameters")
+    void addBasicScore(int userNumber, int drawNumber) {
 
         //when
-        scoreSystem.addBasicScore(1, 1, gameState);
+        scoreSystem.addBasicScore(userNumber, drawNumber, gameState);
 
         //then
         //score system should add to score basic win points and increase winnings
         verify(gameState).addToUserScore(Config.BASIC_WIN_POINTS);
         verify(gameState).increaseWinnings();
+    }
+
+    private static Stream<Arguments> getDrawingParameters() {
+
+        return Stream.of(
+                Arguments.of(1, Config.MIN_VALUE_DRAWING),
+                Arguments.of(10, Config.MAX_VALUE_DRAWING),
+                Arguments.of(2, 2),
+                Arguments.of(9, 9),
+                Arguments.of(5, 5));
     }
 
     @Test

@@ -20,6 +20,5 @@ public class ScoreSystem {
             case Config.QUADRUPLE_WINS -> gameState.addToUserScore(Config.FOUR_WINS_BONUS);
             default -> {}
         }
-
     }
 }
