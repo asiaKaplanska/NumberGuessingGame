@@ -4,6 +4,5 @@
 *.iml
 *.ipr
 *.run
-out
-/out/
+
 
