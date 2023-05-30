@@ -3,12 +3,15 @@ package org.asia.game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class ScoreSystemTest {
 
     ScoreSystem scoreSystem;
@@ -30,8 +33,8 @@ class ScoreSystemTest {
 
         //then
         //score system should set winnings on game state to 0
-        Mockito.verify(gameState).setWinnings(0);
-        Mockito.verify(gameState, Mockito.never()).addToUserScore(Config.BASIC_WIN_POINTS);
+        verify(gameState).setWinnings(0);
+        verify(gameState, never()).addToUserScore(Config.BASIC_WIN_POINTS);
     }
 
     @Test
@@ -43,8 +46,8 @@ class ScoreSystemTest {
 
         //then
         //score system should add to score basic win points and increase winnings
-        Mockito.verify(gameState).addToUserScore(Config.BASIC_WIN_POINTS);
-        Mockito.verify(gameState).increaseWinnings();
+        verify(gameState).addToUserScore(Config.BASIC_WIN_POINTS);
+        verify(gameState).increaseWinnings();
     }
 
     @Test
@@ -53,11 +56,11 @@ class ScoreSystemTest {
 
         //when
         //set mock state to winnings == 2
-        Mockito.when(gameState.getWinnings()).thenReturn(2);
+        when(gameState.getWinnings()).thenReturn(2);
         scoreSystem.addBonusScore(gameState);
 
         //then
-        Mockito.verify(gameState).addToUserScore(Config.TWO_WINS_BONUS);
+        verify(gameState).addToUserScore(Config.TWO_WINS_BONUS);
     }
 
     @Test
@@ -66,11 +69,11 @@ class ScoreSystemTest {
 
         //when
         //set mock state to winnings == 3
-        Mockito.when(gameState.getWinnings()).thenReturn(3);
+        when(gameState.getWinnings()).thenReturn(3);
         scoreSystem.addBonusScore(gameState);
 
         //then
-        Mockito.verify(gameState).addToUserScore(Config.THREE_WINS_BONUS);
+        verify(gameState).addToUserScore(Config.THREE_WINS_BONUS);
     }
 
     @Test
@@ -79,11 +82,11 @@ class ScoreSystemTest {
 
         //when
         //set mock state to winnings == 4
-        Mockito.when(gameState.getWinnings()).thenReturn(4);
+        when(gameState.getWinnings()).thenReturn(4);
         scoreSystem.addBonusScore(gameState);
 
         //then
-        Mockito.verify(gameState).addToUserScore(Config.FOUR_WINS_BONUS);
+        verify(gameState).addToUserScore(Config.FOUR_WINS_BONUS);
     }
 
     @Test
@@ -92,10 +95,10 @@ class ScoreSystemTest {
 
         //when
         //set mock state to winnings == 0
-        Mockito.when(gameState.getWinnings()).thenReturn(0);
+        when(gameState.getWinnings()).thenReturn(0);
         scoreSystem.addBonusScore(gameState);
 
         //then
-        Mockito.verify(gameState, Mockito.never()).addToUserScore(any(Integer.class));
+        verify(gameState, never()).addToUserScore(any(Integer.class));
     }
 }
