@@ -1,9 +1,11 @@
 package org.asia.game;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.lang.reflect.Field;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,22 +13,27 @@ class GameStateTest {
 
     GameState gameState = new GameState();
 
-    @Test
-    @DisplayName("Should correctly add user score [positive]")
-    void addToUserScore() throws NoSuchFieldException, IllegalAccessException {
-
-        //setup
-        //set initial user score to 10
-        Field userScore = gameState.getClass().getDeclaredField("userScore");
-        userScore.setAccessible(true);
-        userScore.set(gameState, 10);
+    @ParameterizedTest
+    @DisplayName("Should correctly add points to user score [positive]")
+    @MethodSource("getInitialAndAdditionalScore")
+    void addToUserScore(int initialPoints, int additionalPoints, int score) {
 
         //when
-        //add additional 10 points to score
-        gameState.addToUserScore(10);
+        gameState.setUserScore(initialPoints);
+        gameState.addToUserScore(additionalPoints);
 
         //then
-        //expected: 10 (initial) + 10 (additional) -> 20 points as result
-        assertEquals(20, userScore.getInt(gameState));
+        assertEquals(score, gameState.getUserScore());
+    }
+
+    private static Stream<Arguments> getInitialAndAdditionalScore() {
+
+        return Stream.of(
+                Arguments.of(0, Config.BASIC_WIN_POINTS, Config.BASIC_WIN_POINTS),
+                Arguments.of(10, Config.BASIC_WIN_POINTS, (10 + Config.BASIC_WIN_POINTS)),
+                Arguments.of(0, Config.TWO_WINS_BONUS, Config.TWO_WINS_BONUS),
+                Arguments.of(5, Config.THREE_WINS_BONUS, (5 + Config.THREE_WINS_BONUS)),
+                Arguments.of(-2, Config.FOUR_WINS_BONUS, (Config.FOUR_WINS_BONUS - 2)),
+                Arguments.of(0, -1234458, -1234458));
     }
 }

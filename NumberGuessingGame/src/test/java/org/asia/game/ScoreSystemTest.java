@@ -72,8 +72,8 @@ class ScoreSystemTest {
     private static Stream<Arguments> getDrawingParameters() {
 
         return Stream.of(
-                Arguments.of(1, Config.MIN_VALUE_DRAWING),
-                Arguments.of(10, Config.MAX_VALUE_DRAWING),
+                Arguments.of(Config.MIN_VALUE_DRAWING, Config.MIN_VALUE_DRAWING),
+                Arguments.of(Config.MAX_VALUE_DRAWING, Config.MAX_VALUE_DRAWING),
                 Arguments.of(2, 2),
                 Arguments.of(9, 9),
                 Arguments.of(5, 5));
